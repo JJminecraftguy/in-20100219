@@ -31,8 +31,8 @@ public class EntityMob extends EntityCreature {
 	}
 
 	protected Entity findPlayerToAttack() {
-		float var1 = this.worldObj.playerEntity.getDistanceSqToEntity(this);
-		return var1 < 256.0F ? this.worldObj.playerEntity : null;
+		float var1 = this.worldObj.y.getDistanceSqToEntity(this);
+		return var1 < 256.0F ? this.worldObj.y : null;
 	}
 
 	public final boolean attackEntityFrom(Entity var1, int var2) {

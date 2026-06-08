@@ -97,7 +97,7 @@ public class EntityArrow extends Entity {
 		}
 
 		Entity var4 = null;
-		List var5 = this.worldObj.entityMap.getEntitiesWithinAABB(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0F, 1.0F, 1.0F));
+		List var5 = this.worldObj.entityMap.a(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0F, 1.0F, 1.0F));
 		float var6 = 0.0F;
 
 		for(int var7 = 0; var7 < var5.size(); ++var7) {
@@ -123,7 +123,7 @@ public class EntityArrow extends Entity {
 		if(var3 != null) {
 			if(var3.entityHit != null) {
 				if(var3.entityHit.attackEntityFrom(this, 4)) {
-					this.worldObj.playSoundAtEntity(this, "random.drr", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+					this.worldObj.a(this, "random.drr", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 					this.setEntityDead();
 				} else {
 					this.motionX *= -0.1F;
@@ -145,7 +145,7 @@ public class EntityArrow extends Entity {
 				this.posX -= this.motionX / var11 * 0.05F;
 				this.posY -= this.motionY / var11 * 0.05F;
 				this.posZ -= this.motionZ / var11 * 0.05F;
-				this.worldObj.playSoundAtEntity(this, "random.drr", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+				this.worldObj.a(this, "random.drr", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 				this.inGround = true;
 				this.arrowShake = 7;
 			}
@@ -214,7 +214,7 @@ public class EntityArrow extends Entity {
 
 	public final void onCollideWithPlayer(EntityPlayer var1) {
 		if(this.inGround && this.owner == var1 && this.arrowShake <= 0 && var1.inventory.storePartialItemStack(new ItemStack(Item.arrow.shiftedIndex, 1))) {
-			this.worldObj.playSoundAtEntity(this, "random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+			this.worldObj.a(this, "random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 			var1.onItemPickup(this);
 			this.setEntityDead();
 		}

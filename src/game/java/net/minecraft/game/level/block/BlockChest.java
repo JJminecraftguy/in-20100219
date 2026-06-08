@@ -171,7 +171,7 @@ public final class BlockChest extends BlockContainer {
 					var12.motionX = (float) this.random.nextGaussian() * 0.05F;
 					var12.motionY = (float) this.random.nextGaussian() * 0.05F + 0.2F;
 					var12.motionZ = (float) this.random.nextGaussian() * 0.05F;
-					var1.spawnEntityInWorld(var12);
+					var1.a(var12);
 				}
 			}
 		}

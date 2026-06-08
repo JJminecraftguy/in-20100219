@@ -108,7 +108,7 @@ public final class GuiIngame extends Gui {
 				}
 			}
 
-			if (this.mc.thePlayer.isInsideOfWater()) {
+			if (this.mc.thePlayer.isInsideOfMaterial()) {
 				var11 = (int) Math.ceil((double) (this.mc.thePlayer.air - 2) * 10.0D / 300.0D);
 				var12 = (int) Math.ceil((double) this.mc.thePlayer.air * 10.0D / 300.0D) - var11;
 
@@ -130,7 +130,7 @@ public final class GuiIngame extends Gui {
 		GL11.glPopMatrix();
 
 		for (var10 = 0; var10 < 9; ++var10) {
-			int var25 = var3 / 2 - 90 + var10 * 20 + 2;
+			int var25 = (var3 / 2 - 90 + var10 * 20 + 2);
 			int var21 = var19 - 16 - 3;
 			ItemStack var22 = this.mc.thePlayer.inventory.mainInventory[var10];
 			if (var22 != null) {

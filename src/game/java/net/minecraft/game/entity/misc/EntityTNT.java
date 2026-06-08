@@ -5,10 +5,10 @@ import net.minecraft.game.entity.Entity;
 import net.minecraft.game.level.World;
 import util.MathHelper;
 
-public class EntityTNTPrimed extends Entity {
+public class EntityTNT extends Entity {
 	public int fuse = 0;
 
-	public EntityTNTPrimed(World var1, float var2, float var3, float var4) {
+	public EntityTNT(World var1, float var2, float var3, float var4) {
 		super(var1);
 		this.preventEntitySpawning = true;
 		this.setSize(0.98F, 0.98F);
@@ -46,7 +46,7 @@ public class EntityTNTPrimed extends Entity {
 
 		if(this.fuse-- <= 0) {
 			this.setEntityDead();
-			this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 4.0F);
+			this.worldObj.a((Entity)null, this.posX, this.posY, this.posZ, 4.0F);
 		} else {
 			this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5F, this.posZ, 0.0F, 0.0F, 0.0F);
 		}

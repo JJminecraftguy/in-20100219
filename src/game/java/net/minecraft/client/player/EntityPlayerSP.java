@@ -109,7 +109,7 @@ public class EntityPlayerSP extends EntityPlayer {
 		this.mc.displayGuiScreen(new GuiFurnace(this.inventory, var1));
 	}
 
-	public final void destroyCurrentEquippedItem() {
+	public final void displayGUIInventory() {
 		this.inventory.setInventorySlotContents(this.inventory.currentItem, (ItemStack)null);
 	}
 

@@ -28,8 +28,8 @@ public class EntityPlayer extends EntityLiving {
 	public EntityPlayer(World var1) {
 		super(var1);
 		if(var1 != null) {
-			var1.playerEntity = this;
-			var1.releaseEntitySkin(this);
+			var1.y = this;
+			var1.b((Entity)this);
 		}
 
 		this.setPositionAndRotation((float)var1.xSpawn, (float)var1.ySpawn, (float)var1.zSpawn, 0.0F, 0.0F);
@@ -44,7 +44,7 @@ public class EntityPlayer extends EntityLiving {
 		this.setSize(0.6F, 1.8F);
 		super.preparePlayerToSpawn();
 		if(this.worldObj != null) {
-			this.worldObj.playerEntity = this;
+			this.worldObj.y = this;
 		}
 
 		this.health = 20;
@@ -84,7 +84,7 @@ public class EntityPlayer extends EntityLiving {
 		this.cameraYaw += (var1 - this.cameraYaw) * 0.4F;
 		this.cameraPitch += (var2 - this.cameraPitch) * 0.8F;
 		if(this.health > 0) {
-			List var5 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0F, 0.0F, 1.0F));
+			List var5 = this.worldObj.a(this, this.boundingBox.expand(1.0F, 0.0F, 1.0F));
 			if(var5 != null) {
 				for(int var6 = 0; var6 < var5.size(); ++var6) {
 					Entity var7 = (Entity)var5.get(var6);
@@ -128,7 +128,7 @@ public class EntityPlayer extends EntityLiving {
 			var4.motionX = (float)((double)var4.motionX + Math.cos((double)var3) * (double)var5);
 			var4.motionY += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F;
 			var4.motionZ = (float)((double)var4.motionZ + Math.sin((double)var3) * (double)var5);
-			this.worldObj.spawnEntityInWorld(var4);
+			this.worldObj.a(var4);
 		}
 	}
 

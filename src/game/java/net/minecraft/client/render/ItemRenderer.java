@@ -235,7 +235,7 @@ public final class ItemRenderer {
 			GL11.glDisable(GL11.GL_BLEND);
 		}
 
-		if(this.mc.thePlayer.isInsideOfWater()) {
+		if(this.mc.thePlayer.isInsideOfMaterial()) {
 			var2 = this.mc.renderEngine.getTexture("/water.png");
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, var2);
 			var3 = Tessellator.instance;

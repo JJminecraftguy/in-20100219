@@ -74,14 +74,14 @@ public class EntityLiving extends Entity {
 			this.livingSoundTime = -80;
 			String var1 = this.getLivingSound();
 			if(var1 != null) {
-				this.worldObj.playSoundAtEntity(this, var1, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+				this.worldObj.a(this, var1, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			}
 		}
 
 		float var2;
 		float var3;
 		float var4;
-		if(this.isInsideOfWater()) {
+		if(this.isInsideOfMaterial()) {
 			--this.air;
 			if(this.air == -20) {
 				this.air = 0;
@@ -258,10 +258,10 @@ public class EntityLiving extends Entity {
 				}
 
 				if(this.health <= 0) {
-					this.worldObj.playSoundAtEntity(this, this.getDeathSound(), 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+					this.worldObj.a(this, this.getDeathSound(), 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 					this.onDeath(var1);
 				} else {
-					this.worldObj.playSoundAtEntity(this, this.getHurtSound(), 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+					this.worldObj.a(this, this.getHurtSound(), 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 				}
 
 				return true;
@@ -304,7 +304,7 @@ public class EntityLiving extends Entity {
 			var3 = this.worldObj.getBlockId((int)this.posX, (int)(this.posY - 0.2F - this.yOffset), (int)this.posZ);
 			if(var3 > 0) {
 				StepSound var4 = Block.blocksList[var3].stepSound;
-				this.worldObj.playSoundAtEntity(this, var4.stepSoundDir2(), var4.soundVolume * 0.5F, var4.soundPitch * (12.0F / 16.0F));
+				this.worldObj.a(this, var4.stepSoundDir2(), var4.soundVolume * 0.5F, var4.soundPitch * (12.0F / 16.0F));
 			}
 		}
 
@@ -341,7 +341,7 @@ public class EntityLiving extends Entity {
 		float var2;
 		float var3;
 		if(this.entityAge > 600 && this.rand.nextInt(800) == 0) {
-			Entity var1 = this.worldObj.getPlayerEntity();
+			Entity var1 = this.worldObj.i();
 			if(var1 != null) {
 				var2 = var1.posX - this.posX;
 				var3 = var1.posY - this.posY;
@@ -427,7 +427,7 @@ public class EntityLiving extends Entity {
 
 		this.limbYaw += (var2 - this.limbYaw) * 0.4F;
 		this.limbSwing += this.limbYaw;
-		List var9 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.2F, 0.0F, 0.2F));
+		List var9 = this.worldObj.a(this, this.boundingBox.expand(0.2F, 0.0F, 0.2F));
 		if(var9 != null && var9.size() > 0) {
 			for(int var7 = 0; var7 < var9.size(); ++var7) {
 				Entity var10 = (Entity)var9.get(var7);

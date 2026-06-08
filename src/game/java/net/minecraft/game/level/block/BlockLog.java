@@ -10,11 +10,11 @@ public final class BlockLog extends Block {
 	}
 
 	public final int quantityDropped(Random var1) {
-		return 1;
+		return var1.nextInt(3) + 3;
 	}
 
 	public final int idDropped(int var1, Random var2) {
-		return Block.wood.blockID;
+		return Block.planks.blockID;
 	}
 
 	public final int getBlockTextureFromSide(int var1) {

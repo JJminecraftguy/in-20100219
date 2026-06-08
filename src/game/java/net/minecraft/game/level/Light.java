@@ -400,7 +400,7 @@ public final class Light {
 		}
 	}
 
-	public final String debugLightUpdates() {
+	public final String debugSkylightUpdates() {
 		return "" + (this.blockLightList.size() + this.skyLightList.size());
 	}
 }

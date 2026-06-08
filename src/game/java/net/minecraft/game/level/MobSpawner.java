@@ -62,7 +62,7 @@ public class MobSpawner {
 		Object var23;
 		for(var4 = 0; var4 < 4; ++var4) {
 			if(var3 < var1) {
-				var5 = this.worldObj.playerEntity;
+				var5 = this.worldObj.y;
 				var22 = this;
 				var6 = 0;
 				var7 = this.worldObj.random.nextInt(5);
@@ -126,7 +126,7 @@ public class MobSpawner {
 								var21 = var22.worldObj.random.nextFloat() * 360.0F;
 								((EntityLiving)var23).setPositionAndRotation(var16, var17, var18, var21, 0.0F);
 								++var6;
-								var22.worldObj.spawnEntityInWorld((Entity)var23);
+								var22.worldObj.a((Entity)var23);
 							}
 						}
 					}
@@ -140,7 +140,7 @@ public class MobSpawner {
 
 		for(var1 = 0; var1 < 4; ++var1) {
 			if(var4 < var2) {
-				var5 = this.worldObj.playerEntity;
+				var5 = this.worldObj.y;
 				var22 = this;
 				var6 = 0;
 				var7 = this.worldObj.random.nextInt(2);
@@ -192,7 +192,7 @@ public class MobSpawner {
 								var21 = var22.worldObj.random.nextFloat() * 360.0F;
 								((EntityLiving)var23).setPositionAndRotation(var16, var17, var18, var21, 0.0F);
 								++var6;
-								var22.worldObj.spawnEntityInWorld((Entity)var23);
+								var22.worldObj.a((Entity)var23);
 							}
 						}
 					}

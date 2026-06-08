@@ -47,7 +47,7 @@ public class EntityItem extends Entity {
 			this.motionY = 0.2F;
 			this.motionX = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F;
 			this.motionZ = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F;
-			this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
+			this.worldObj.a(this, "random.fizz", 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
 		}
 
 		float var4 = this.posZ;
@@ -174,7 +174,7 @@ public class EntityItem extends Entity {
 
 	public final void onCollideWithPlayer(EntityPlayer var1) {
 		if(this.delayBeforeCanPickup == 0 && var1.inventory.storePartialItemStack(this.item)) {
-			this.worldObj.playSoundAtEntity(this, "random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+			this.worldObj.a(this, "random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 			var1.onItemPickup(this);
 			this.setEntityDead();
 		}

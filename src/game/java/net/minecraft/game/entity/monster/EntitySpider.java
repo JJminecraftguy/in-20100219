@@ -17,9 +17,9 @@ public class EntitySpider extends EntityMob {
 	protected final Entity findPlayerToAttack() {
 		float var1 = this.getEntityBrightness(1.0F);
 		if(var1 < 0.5F) {
-			var1 = this.worldObj.playerEntity.getDistanceSqToEntity(this);
+			var1 = this.worldObj.y.getDistanceSqToEntity(this);
 			if(var1 < 256.0F) {
-				return this.worldObj.playerEntity;
+				return this.worldObj.y;
 			}
 		}
 

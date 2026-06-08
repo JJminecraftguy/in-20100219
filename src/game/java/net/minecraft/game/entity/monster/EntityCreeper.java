@@ -48,13 +48,13 @@ public class EntityCreeper extends EntityMob {
 	protected final void attackEntity(Entity var1, float var2) {
 		if(this.creeperState <= 0 && var2 < 3.0F || this.creeperState > 0 && var2 < 7.0F) {
 			if(this.timeSinceIgnited == 0) {
-				this.worldObj.playSoundAtEntity(this, "random.fuse", 1.0F, 0.5F);
+				this.worldObj.a(this, "random.fuse", 1.0F, 0.5F);
 			}
 
 			this.creeperState = 1;
 			++this.timeSinceIgnited;
 			if(this.timeSinceIgnited == this.fuseTime) {
-				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3.0F);
+				this.worldObj.a(this, this.posX, this.posY, this.posZ, 3.0F);
 				this.setEntityDead();
 			}
 

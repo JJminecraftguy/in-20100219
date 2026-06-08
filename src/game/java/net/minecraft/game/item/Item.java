@@ -72,7 +72,6 @@ public class Item {
 	public static Item flint;
 	public static Item porkRaw;
 	public static Item porkCooked;
-	public static Item painting;
 	public final int shiftedIndex;
 	protected int maxStackSize = 64;
 	protected int maxDamage = 32;
@@ -455,10 +454,5 @@ public class Item {
 		var5 = var18;
 		var5.iconIndex = var1;
 		porkCooked = var5;
-		ItemPainting var26 = new ItemPainting(65);
-		var1 = 26;
-		ItemPainting var14 = var26;
-		var14.iconIndex = var1;
-		painting = var14;
 	}
 }

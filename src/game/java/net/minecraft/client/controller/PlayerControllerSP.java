@@ -33,7 +33,7 @@ public final class PlayerControllerSP extends PlayerController {
 		if(var9 != null) {
 			Item.itemsList[var9.itemID].onBlockDestroyed(var9);
 			if(var9.stackSize == 0) {
-				this.mc.thePlayer.destroyCurrentEquippedItem();
+				this.mc.thePlayer.displayGUIInventory();
 			}
 		}
 

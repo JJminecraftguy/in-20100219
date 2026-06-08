@@ -120,7 +120,7 @@ public abstract class Entity {
 					var1 = 1.0F;
 				}
 
-				this.worldObj.playSoundAtEntity(this, "random.splash", var1,
+				this.worldObj.a(this, "random.splash", var1,
 						1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
 				var1 = (float) ((int) this.boundingBox.minY);
 
@@ -344,7 +344,7 @@ public abstract class Entity {
 					++this.nextStepDistance;
 					StepSound var15 = Block.blocksList[var16].stepSound;
 					if (!Block.blocksList[var16].material.getIsLiquid()) {
-						this.worldObj.playSoundAtEntity(this, var15.stepSoundDir2(), var15.soundVolume * 0.15F, var15.soundPitch);
+						this.worldObj.a(this, var15.stepSoundDir2(), var15.soundVolume * 0.15F, var15.soundPitch);
 					}
 
 					Block.blocksList[var16].onEntityWalking(this.worldObj, var21, var23, var17);
@@ -366,7 +366,7 @@ public abstract class Entity {
 			}
 
 			if (var22 && this.fire > 0) {
-				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.7F,
+				this.worldObj.a(this, "random.fizz", 0.7F,
 						1.6F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
 				this.fire = -this.fireResistance;
 			}
@@ -385,7 +385,7 @@ public abstract class Entity {
 		return this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0F, -0.4F, 0.0F), Material.water);
 	}
 
-	public final boolean isInsideOfWater() {
+	public final boolean isInsideOfMaterial() {
 		int var1 = this.worldObj.getBlockId((int) this.posX, (int) (this.posY + this.getEyeHeight()), (int) this.posZ);
 		return var1 != 0 ? Block.blocksList[var1].material == Material.water : false;
 	}
@@ -548,7 +548,7 @@ public abstract class Entity {
 	public final EntityItem entityDropItem(int var1, int var2, float var3) {
 		EntityItem var4 = new EntityItem(this.worldObj, this.posX, this.posY + var3, this.posZ, new ItemStack(var1, var2));
 		var4.delayBeforeCanPickup = 10;
-		this.worldObj.spawnEntityInWorld(var4);
+		this.worldObj.a(var4);
 		return var4;
 	}
 

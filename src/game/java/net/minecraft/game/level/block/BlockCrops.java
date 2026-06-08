@@ -95,7 +95,7 @@ public final class BlockCrops extends BlockFlower {
 				EntityItem var10 = new EntityItem(var1, (float) var2 + var7, (float) var3 + var8, (float) var4 + var9,
 						new ItemStack(Item.seeds));
 				var10.delayBeforeCanPickup = 10;
-				var1.spawnEntityInWorld(var10);
+				var1.a(var10);
 			}
 		}
 

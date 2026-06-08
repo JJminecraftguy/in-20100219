@@ -256,7 +256,7 @@ public class Block {
 			}
 
 			float var6 = var4;
-			if (var1.isInsideOfWater()) {
+			if (var1.isInsideOfMaterial()) {
 				var6 = var4 / 5.0F;
 			}
 
@@ -285,7 +285,7 @@ public class Block {
 					EntityItem var13 = new EntityItem(var1, (float) var2 + var10, (float) var3 + var11, (float) var4 + var12,
 							new ItemStack(var9));
 					var13.delayBeforeCanPickup = 10;
-					var1.spawnEntityInWorld(var13);
+					var1.a(var13);
 				}
 			}
 		}

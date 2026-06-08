@@ -357,7 +357,7 @@ public final class Minecraft implements Runnable {
 								EntityLiving var8 = (EntityLiving)var14;
 								Item.itemsList[var2.itemID].hitEntity(var2);
 								if(var2.stackSize <= 0) {
-									var12.destroyCurrentEquippedItem();
+									var12.displayGUIInventory();
 								}
 							}
 						}
@@ -690,13 +690,13 @@ public final class Minecraft implements Runnable {
 		if(var1 != null) {
 			var1.load();
 			this.playerController.onWorldChange(var1);
-			if(var1.playerEntity instanceof EntityPlayerSP) {
-				this.thePlayer = (EntityPlayerSP)var1.playerEntity;
+			if(var1.y instanceof EntityPlayerSP) {
+				this.thePlayer = (EntityPlayerSP)var1.y;
 			} else {
 				this.thePlayer = new EntityPlayerSP(this, var1, this.session);
 				this.thePlayer.preparePlayerToSpawn();
-				var1.spawnEntityInWorld(this.thePlayer);
-				var1.playerEntity = this.thePlayer;
+				var1.a(this.thePlayer);
+				var1.y = this.thePlayer;
 			}
 
 			if(this.thePlayer != null) {

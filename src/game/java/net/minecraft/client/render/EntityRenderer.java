@@ -398,7 +398,7 @@ public final class EntityRenderer {
 
 		var19 = var11.addVector(var16 * var18, var15 * var18, var17 * var18);
 		this.pointedEntity = null;
-		List var8 = this.mc.theWorld.entityMap.getEntitiesWithinAABB(var9,
+		List var8 = this.mc.theWorld.entityMap.a(var9,
 				var9.boundingBox.addCoord(var16 * var18, var15 * var18, var17 * var18));
 		float var28 = 0.0F;
 
@@ -448,7 +448,7 @@ public final class EntityRenderer {
 
 			EntityPlayerSP var34 = this.mc.thePlayer;
 			var13 = 70.0F;
-			if (var34.isInsideOfWater()) {
+			if (var34.isInsideOfMaterial()) {
 				var13 = 60.0F;
 			}
 
@@ -556,7 +556,7 @@ public final class EntityRenderer {
 			this.setupFog();
 			var6.renderParticles(var3, var1);
 			var5.oobGroundRenderer();
-			if (this.mc.objectMouseOver != null && var3.isInsideOfWater()) {
+			if (this.mc.objectMouseOver != null && var3.isInsideOfMaterial()) {
 				GL11.glDisable(GL11.GL_ALPHA_TEST);
 				var5.drawBlockBreaking(this.mc.objectMouseOver, 0, var3.inventory.getCurrentItem());
 				var5.drawSelectionBox(this.mc.objectMouseOver, 0);
@@ -586,7 +586,7 @@ public final class EntityRenderer {
 			GL11.glDepthMask(true);
 			GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glDisable(GL11.GL_BLEND);
-			if (this.mc.objectMouseOver != null && !var3.isInsideOfWater()) {
+			if (this.mc.objectMouseOver != null && !var3.isInsideOfMaterial()) {
 				GL11.glDisable(GL11.GL_ALPHA_TEST);
 				var5.drawBlockBreaking(this.mc.objectMouseOver, 0, var3.inventory.getCurrentItem());
 				var5.drawSelectionBox(this.mc.objectMouseOver, 0);

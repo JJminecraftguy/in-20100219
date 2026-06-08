@@ -43,14 +43,14 @@ final class EntityMapSlot {
 		return this;
 	}
 
-	public final void add(Entity var1) {
+	public final void a(Entity var1) {
 		if(this.xSlot >= 0 && this.ySlot >= 0 && this.zSlot >= 0) {
 			this.entityMap.entityGrid[(this.zSlot * this.entityMap.depth + this.ySlot) * this.entityMap.width + this.xSlot].add(var1);
 		}
 
 	}
 
-	public final void remove(Entity var1) {
+	public final void b(Entity var1) {
 		if(this.xSlot >= 0 && this.ySlot >= 0 && this.zSlot >= 0) {
 			this.entityMap.entityGrid[(this.zSlot * this.entityMap.depth + this.ySlot) * this.entityMap.width + this.xSlot].remove(var1);
 		}

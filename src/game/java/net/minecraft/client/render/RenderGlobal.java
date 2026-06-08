@@ -203,7 +203,7 @@ public final class RenderGlobal implements IWorldAccess {
 								var12 = (var13 + var14 + var12) / 3.0F;
 								var12 *= 64.0F;
 								if (var16 < var12 * var12 && var2.isBoundingBoxInFrustrum(var15.boundingBox)
-										&& (var15 != this.worldObj.playerEntity || this.mc.options.thirdPersonView)) {
+										&& (var15 != this.worldObj.y || this.mc.options.thirdPersonView)) {
 									++this.countEntitiesRendered;
 									RenderManager.instance.renderEntity(var15, var3);
 								}
@@ -330,12 +330,12 @@ public final class RenderGlobal implements IWorldAccess {
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
 		GL11.glPushMatrix();
-		var3 = this.worldObj.playerEntity.lastTickPosX
-				+ (this.worldObj.playerEntity.posX - this.worldObj.playerEntity.lastTickPosX) * var1;
-		var4 = this.worldObj.playerEntity.lastTickPosY
-				+ (this.worldObj.playerEntity.posY - this.worldObj.playerEntity.lastTickPosY) * var1;
-		float var6 = this.worldObj.playerEntity.lastTickPosZ
-				+ (this.worldObj.playerEntity.posZ - this.worldObj.playerEntity.lastTickPosZ) * var1;
+		var3 = this.worldObj.y.lastTickPosX
+				+ (this.worldObj.y.posX - this.worldObj.y.lastTickPosX) * var1;
+		var4 = this.worldObj.y.lastTickPosY
+				+ (this.worldObj.y.posY - this.worldObj.y.lastTickPosY) * var1;
+		float var6 = this.worldObj.y.lastTickPosZ
+				+ (this.worldObj.y.posZ - this.worldObj.y.lastTickPosZ) * var1;
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glTranslatef(var3, var4, var6);
 		GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
@@ -666,9 +666,9 @@ public final class RenderGlobal implements IWorldAccess {
 	}
 
 	public final void spawnParticle(String var1, float var2, float var3, float var4, float var5, float var6, float var7) {
-		float var8 = this.worldObj.playerEntity.posX - var2;
-		float var9 = this.worldObj.playerEntity.posY - var3;
-		float var10 = this.worldObj.playerEntity.posZ - var4;
+		float var8 = this.worldObj.y.posX - var2;
+		float var9 = this.worldObj.y.posY - var3;
+		float var10 = this.worldObj.y.posZ - var4;
 		if (var8 * var8 + var9 * var9 + var10 * var10 <= 256.0F) {
 			if (var1 == "bubble") {
 				this.mc.effectRenderer.addEffect(new EntityBubbleFX(this.worldObj, var2, var3, var4, var5, var6, var7));

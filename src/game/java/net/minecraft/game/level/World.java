@@ -52,7 +52,7 @@ public final class World {
 	public int cloudColor = 16777215;
 	private int updateLCG = 0;
 	private int playTime = 0;
-	public EntityLiving playerEntity;
+	public EntityLiving y;
 	public boolean survivalWorld = true;
 	public int skyBrightness = 15;
 	public int skylightSubtracted = 15;
@@ -727,11 +727,11 @@ public final class World {
 	}
 
 	public final boolean checkIfAABBIsClear1(AxisAlignedBB var1) {
-		return this.entityMap.getEntitiesWithinAABB((Entity) null, var1).size() == 0;
+		return this.entityMap.a((Entity) null, var1).size() == 0;
 	}
 
 	public final boolean checkIfAABBIsClear(AxisAlignedBB var1) {
-		List var4 = this.entityMap.getEntitiesWithinAABB((Entity) null, var1);
+		List var4 = this.entityMap.a((Entity) null, var1);
 
 		for (int var2 = 0; var2 < var4.size(); ++var2) {
 			Entity var3 = (Entity) var4.get(var2);
@@ -743,8 +743,8 @@ public final class World {
 		return true;
 	}
 
-	public final List getEntitiesWithinAABBExcludingEntity(Entity var1, AxisAlignedBB var2) {
-		return this.entityMap.getEntitiesWithinAABB(var1, var2);
+	public final List a(Entity var1, AxisAlignedBB var2) {
+		return this.entityMap.a(var1, var2);
 	}
 
 	public final boolean isSolid(float var1, float var2, float var3, float var4) {
@@ -1076,12 +1076,12 @@ public final class World {
 		}
 	}
 
-	public final Entity getPlayerEntity() {
-		return this.playerEntity;
+	public final Entity i() {
+		return this.y;
 	}
 
-	public final void spawnEntityInWorld(Entity var1) {
-		this.entityMap.insert(var1);
+	public final void a(Entity var1) {
+		this.entityMap.a(var1);
 		var1.setWorld(this);
 
 		for (int var2 = 0; var2 < this.worldAccesses.size(); ++var2) {
@@ -1090,8 +1090,8 @@ public final class World {
 
 	}
 
-	public final void releaseEntitySkin(Entity var1) {
-		this.entityMap.remove(var1);
+	public final void b(Entity var1) {
+		this.entityMap.b(var1);
 
 		for (int var2 = 0; var2 < this.worldAccesses.size(); ++var2) {
 			((IWorldAccess) this.worldAccesses.get(var2)).releaseEntitySkin(var1);
@@ -1099,7 +1099,7 @@ public final class World {
 
 	}
 
-	public final void createExplosion(Entity var1, float var2, float var3, float var4, float var5) {
+	public final void a(Entity var1, float var2, float var3, float var4, float var5) {
 		this.playSoundAtPlayer(var2, var3, var4, "random.explode", 4.0F,
 				(1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F) * 0.7F);
 		TreeSet var6 = new TreeSet();
@@ -1159,7 +1159,7 @@ public final class World {
 		int var29 = (int) (var3 + var5 + 1.0F);
 		int var30 = (int) (var4 - var5 - 1.0F);
 		int var31 = (int) (var4 + var5 + 1.0F);
-		List var32 = this.entityMap.getEntities(var1, (float) var8, (float) var10, (float) var30, (float) var9,
+		List var32 = this.entityMap.a(var1, (float) var8, (float) var10, (float) var30, (float) var9,
 				(float) var29, (float) var31);
 		Vec3D var33 = new Vec3D(var2, var3, var4);
 
@@ -1258,7 +1258,7 @@ public final class World {
 		return (float) var6 / (float) var7;
 	}
 
-	public final Entity findSubclassOf(Class var1) {
+	public final Entity b(Class var1) {
 		for (int var2 = 0; var2 < this.entityMap.entities.size(); ++var2) {
 			Entity var3 = (Entity) this.entityMap.entities.get(var2);
 			if (var1.isAssignableFrom(var3.getClass())) {
@@ -1490,14 +1490,14 @@ public final class World {
 		}
 	}
 
-	public final void playSoundAtEntity(Entity var1, String var2, float var3, float var4) {
+	public final void a(Entity var1, String var2, float var3, float var4) {
 		for (int var5 = 0; var5 < this.worldAccesses.size(); ++var5) {
 			float var6 = 16.0F;
 			if (var3 > 1.0F) {
 				var6 = 16.0F * var3;
 			}
 
-			if (this.playerEntity.getDistanceSqToEntity(var1) < var6 * var6) {
+			if (this.y.getDistanceSqToEntity(var1) < var6 * var6) {
 				((IWorldAccess) this.worldAccesses.get(var5)).playSound(var2, var1.posX, var1.posY - var1.yOffset, var1.posZ,
 						var3, var4);
 			}
@@ -1524,9 +1524,9 @@ public final class World {
 					var8 = 16.0F * var5;
 				}
 
-				float var9 = var1 - this.playerEntity.posX;
-				float var10 = var2 - this.playerEntity.posY;
-				float var11 = var3 - this.playerEntity.posZ;
+				float var9 = var1 - this.y.posX;
+				float var10 = var2 - this.y.posY;
+				float var11 = var3 - this.y.posZ;
 				if (var9 * var9 + var10 * var10 + var11 * var11 < var8 * var8) {
 					((IWorldAccess) this.worldAccesses.get(var7)).playSound(var4, var1, var2, var3, var5, var6);
 				}
@@ -1617,7 +1617,7 @@ public final class World {
 	}
 
 	public final String debugSkylightUpdates() {
-		return "" + this.tickList.size() + ". L: " + this.lightUpdates.debugLightUpdates();
+		return "" + this.tickList.size() + ". L: " + this.lightUpdates.debugSkylightUpdates();
 	}
 
 	public final void setLevel() {
