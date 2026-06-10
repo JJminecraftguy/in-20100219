@@ -15,7 +15,7 @@ This is a fully functional web port of Minecraft Indev 20100219, playable in any
 **Other Minecraft Web Ports:** https://eaglerports.github.io/
 
 ### Offline Downloads:
-You can compile it yourself or go to the github pages branch and download the file.
+You can compile it yourself or go to the released and download the offline file.
 
 ## Compiling
 Run the `CompileClient` script to build the JavaScript and WASM-GC clients. The results will be in the `client` folder.
