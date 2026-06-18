@@ -28,9 +28,9 @@ This is the WASM-GC version of EaglercraftX and may not be compatible with outda
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-<meta name="description" content="EaglercraftX 1.8 WASM-GC Offline" />
-<meta name="keywords" content="eaglercraft, eaglercraftx, minecraft, 1.8, 1.8.8" />
-<title>EaglercraftX 1.8 WASM-GC</title>
+<meta name="description" content="Eaglercraft in-20100219 WASM-GC" />
+<meta name="keywords" content="eaglercraft, eaglercraftx, minecraft, indev, in-20100219" />
+<title>Eaglercraft 20100219 WASM-GC</title>
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="EaglercraftX 1.8 WASM-GC Offline" />

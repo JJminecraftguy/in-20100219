@@ -1617,7 +1617,7 @@ public final class World {
 	}
 
 	public final String debugSkylightUpdates() {
-		return "" + this.tickList.size() + ". L: " + this.lightUpdates.debugLightUpdates();
+		return "" + this.tickList.size() + ". L: " + this.lightUpdates.debugSkylightUpdates();
 	}
 
 	public final void setLevel() {

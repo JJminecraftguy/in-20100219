@@ -2,7 +2,7 @@ package net.minecraft.client.render.entity;
 
 import net.minecraft.client.render.RenderBlocks;
 import net.minecraft.game.entity.Entity;
-import net.minecraft.game.entity.misc.EntityTNTPrimed;
+import net.minecraft.game.entity.misc.EntityTNT;
 import net.minecraft.game.level.block.Block;
 import org.lwjgl.opengl.GL11;
 
@@ -14,11 +14,11 @@ public final class RenderTNTPrimed extends Render {
 	}
 
 	public final void doRender(Entity var1, float var2, float var3, float var4, float var5, float var6) {
-		EntityTNTPrimed var10001 = (EntityTNTPrimed)var1;
+		EntityTNT var10001 = (EntityTNT)var1;
 		var5 = var4;
 		var4 = var3;
 		var3 = var2;
-		EntityTNTPrimed var7 = var10001;
+		EntityTNT var7 = var10001;
 		GL11.glPushMatrix();
 		GL11.glTranslatef(var3, var4, var5);
 		if((float)var7.fuse - var6 + 1.0F < 10.0F) {

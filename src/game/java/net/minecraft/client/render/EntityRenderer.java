@@ -14,7 +14,7 @@ import net.minecraft.client.controller.PlayerControllerCreative;
 import net.minecraft.client.effect.EffectRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.player.EntityPlayerSP;
-import net.minecraft.client.render.camera.ClippingHelperImplementation;
+import net.minecraft.client.render.camera.ClippingHelperImpl;
 import net.minecraft.client.render.camera.Frustrum;
 import net.minecraft.client.render.camera.IsomCamera;
 import net.minecraft.game.entity.Entity;
@@ -517,7 +517,7 @@ public final class EntityRenderer {
 			GL11.glRotatef(var34.prevRotationYaw + (var34.rotationYaw - var34.prevRotationYaw) * var27 + 180.0F, 0.0F, 1.0F,
 					0.0F);
 			GL11.glTranslatef(-var13, -var14, -var15);
-			ClippingHelperImplementation.init();
+			ClippingHelperImpl.init();
 			this.setupFog();
 			GL11.glEnable(GL11.GL_FOG);
 			var5.renderSky(var1);

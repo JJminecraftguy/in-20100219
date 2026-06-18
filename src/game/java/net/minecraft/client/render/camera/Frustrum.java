@@ -3,7 +3,7 @@ package net.minecraft.client.render.camera;
 import net.minecraft.game.physics.AxisAlignedBB;
 
 public final class Frustrum implements ICamera {
-	private ClippingHelper clippingHelper = ClippingHelperImplementation.init();
+	private ClippingHelper clippingHelper = ClippingHelperImpl.init();
 
 	public final boolean isBoundingBoxInFrustrum(AxisAlignedBB var1) {
 		ClippingHelper var9 = this.clippingHelper;

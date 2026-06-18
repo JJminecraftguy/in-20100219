@@ -13,6 +13,5 @@ public final class ItemArmor extends Item {
 		this.renderIndex = var3;
 		this.damageReduceAmount = damageReduceAmountArray[var4];
 		this.maxDamage = maxDamageArray[var4] * 3 << var2;
-		this.maxStackSize = 1;
 	}
 }

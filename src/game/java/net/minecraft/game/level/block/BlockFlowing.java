@@ -42,7 +42,10 @@ public final class BlockFlowing extends BlockFluid {
 		int var9;
 		if (var6 && var1.getBlockMaterial(var2, var3 - 1, var4) == this.material) {
 			var5 = var1.floodFill(var2, var3 - 1, var4, this.movingId1, this.stillId1);
-			if (var5 == 1) {
+			if(var5 <= 0) {
+				return false;
+			}
+			if(var5 == 2) {
 				var7 = var1.fluidFlowCheck(var2, var3, var4, this.movingId1, this.stillId1);
 				if (var7 != -9999) {
 					if (var7 < 0) {

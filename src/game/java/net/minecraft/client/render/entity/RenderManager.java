@@ -12,11 +12,10 @@ import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.render.RenderEngine;
 import net.minecraft.game.entity.Entity;
 import net.minecraft.game.entity.EntityLiving;
-import net.minecraft.game.entity.EntityPainting;
 import net.minecraft.game.entity.animal.EntityPig;
 import net.minecraft.game.entity.animal.EntitySheep;
 import net.minecraft.game.entity.misc.EntityItem;
-import net.minecraft.game.entity.misc.EntityTNTPrimed;
+import net.minecraft.game.entity.misc.EntityTNT;
 import net.minecraft.game.entity.monster.EntityCreeper;
 import net.minecraft.game.entity.monster.EntityGiantZombie;
 import net.minecraft.game.entity.monster.EntitySkeleton;
@@ -48,10 +47,9 @@ public final class RenderManager {
 		this.entityRenderMap.put(EntityGiantZombie.class, new RenderGiantZombie(new ModelZombie(), 0.5F, 6.0F));
 		this.entityRenderMap.put(EntityLiving.class, new RenderLiving(new ModelBiped(), 0.5F));
 		this.entityRenderMap.put(Entity.class, new RenderEntity());
-		this.entityRenderMap.put(EntityPainting.class, new RenderPainting());
 		this.entityRenderMap.put(EntityArrow.class, new RenderArrow());
 		this.entityRenderMap.put(EntityItem.class, new RenderItem());
-		this.entityRenderMap.put(EntityTNTPrimed.class, new RenderTNTPrimed());
+		this.entityRenderMap.put(EntityTNT.class, new RenderTNTPrimed());
 		Iterator var1 = this.entityRenderMap.values().iterator();
 
 		while(var1.hasNext()) {

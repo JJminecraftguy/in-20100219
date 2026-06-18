@@ -161,10 +161,10 @@ public abstract class Render {
 			var35.startDrawingQuads();
 
 			while(var19 > 0.0F) {
-				var35.addVertexWithUV(var36 - 0.5F, 0.0F - var18, 0.0F, var31, var33);
 				var35.addVertexWithUV(-0.5F, 0.0F - var18, 0.0F, var12, var33);
-				var35.addVertexWithUV(-0.5F, 1.4F - var18, 0.0F, var12, var32);
+				var35.addVertexWithUV(var36 - 0.5F, 0.0F - var18, 0.0F, var31, var33);
 				var35.addVertexWithUV(var36 - 0.5F, 1.4F - var18, 0.0F, var31, var32);
+				var35.addVertexWithUV(-0.5F, 1.4F - var18, 0.0F, var12, var32);
 				--var19;
 				--var18;
 				var36 *= 0.9F;
