@@ -49,6 +49,40 @@ import net.lax1dude.eaglercraft.internal.wasm_gc_teavm.TeaVMUtils;
 
 public class PlatformApplication {
 
+    private static HTMLCanvasElement bigShotCanvas = null;
+    private static CanvasRenderingContext2D bigShotCtx = null;
+
+    public static void startBigScreenshot(int w, int h) {
+        bigShotCanvas = (HTMLCanvasElement) Window.current().getDocument().createElement("canvas");
+        bigShotCanvas.setWidth(w);
+        bigShotCanvas.setHeight(h);
+        bigShotCtx = (CanvasRenderingContext2D) bigShotCanvas.getContext("2d", youEagler());
+    }
+
+    public static void putTileToBigScreenshot(int x, int y, int w, int h, ByteBuffer buf) {
+        if (bigShotCtx != null) {
+            ImageData imgData = bigShotCtx.createImageData(w, h);
+            Uint8ClampedArray dest = imgData.getData();
+            int ww = w * 4;
+            // Copy pixels directly without flipping
+            for(int i = 0; i < h; ++i) {
+                int j = i * ww;
+                buf.limit(j + ww);
+                buf.position(j);
+                dest.set(WASMGCBufferAllocator.getUnsignedClampedByteBufferView(buf), i * ww);
+            }
+            bigShotCtx.putImageData(imgData, x, y);
+        }
+    }
+
+    public static void saveBigScreenshot(String name) {
+        if (bigShotCanvas != null) {
+            downloadScreenshotWithNameTeaVM(BetterJSStringConverter.stringToJS(name), bigShotCanvas);
+            bigShotCanvas = null;
+            bigShotCtx = null;
+        }
+    }
+
 	public static void openLink(String url) {
 		if(url.indexOf(':') == -1) {
 			url = "http://" + url;

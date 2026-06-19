@@ -557,9 +557,9 @@ public final class Minecraft implements Runnable {
 										this.displayInGameMenu();
 									}
 
-									// if(Keyboard.getEventKey() == Keyboard.KEY_F7) {
-									// 	this.entityRenderer.grabLargeScreenshot();
-									// }
+									if(Keyboard.getEventKey() == Keyboard.KEY_F7) {
+										this.entityRenderer.grabLargeScreenshot();
+									}
 
 									/* if(this.playerController instanceof PlayerControllerCreative) {
 										if(Keyboard.getEventKey() == this.options.keyBindLoad.keyCode) {

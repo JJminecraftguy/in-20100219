@@ -6,8 +6,13 @@ import java.text.DecimalFormat;
 import java.util.List;
 import net.lax1dude.eaglercraft.Random;
 
+import net.lax1dude.eaglercraft.EagRuntime;
+import net.lax1dude.eaglercraft.internal.PlatformOpenGL;
+import net.lax1dude.eaglercraft.internal.PlatformRuntime;
+import net.lax1dude.eaglercraft.internal.PlatformApplication;
 import net.lax1dude.eaglercraft.internal.buffer.ByteBuffer;
 import net.lax1dude.eaglercraft.internal.buffer.FloatBuffer;
+import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.RenderHelper;
 import net.minecraft.client.controller.PlayerControllerCreative;
@@ -204,166 +209,154 @@ public final class EntityRenderer {
 		}
 	}
 
-	/*
-	 * public final void grabLargeScreenshot() {
-	 * this.mc.loadingScreen.displayProgressMessage("Grabbing large screenshot");
-	 * File var1 = new File(System.getProperty("user.home", "."));
-	 * int var2 = 0;
-	 * 
-	 * while(true) {
-	 * File var3 = new File(var1, "mc_map_" +
-	 * this.entityDecimalFormat.format((long)var2) + ".png");
-	 * if(!var3.exists()) {
-	 * var3 = var3.getAbsoluteFile();
-	 * this.mc.loadingScreen.displayLoadingString("Rendering");
-	 * this.mc.loadingScreen.setLoadingProgress(0);
-	 * 
-	 * try {
-	 * int var19 = (this.mc.theWorld.width << 4) + (this.mc.theWorld.length << 4);
-	 * var2 = (this.mc.theWorld.height << 4) + var19 / 2;
-	 * BufferedImage var4 = new BufferedImage(var19, var2, 1);
-	 * Graphics var5 = var4.getGraphics();
-	 * int var6 = this.mc.displayWidth;
-	 * int var7 = this.mc.displayHeight;
-	 * int var8 = (var19 / var6 + 1) * (var2 / var7 + 1);
-	 * int var9 = 0;
-	 * 
-	 * for(int var10 = 0; var10 < var19; var10 += var6) {
-	 * for(int var11 = 0; var11 < var2; var11 += var7) {
-	 * ++var9;
-	 * this.mc.loadingScreen.setLoadingProgress(var9 * 100 / var8);
-	 * int var10001 = var10 - var19 / 2;
-	 * int var10002 = var11 - var2 / 2;
-	 * float var12 = 0.0F;
-	 * int var14 = var10002;
-	 * int var13 = var10001;
-	 * if(this.entityByteBuffer == null) {
-	 * this.entityByteBuffer =
-	 * GLAllocation.createDirectByteBuffer(this.mc.displayWidth *
-	 * this.mc.displayHeight << 2);
-	 * }
-	 * 
-	 * EntityPlayerSP var15 = this.mc.thePlayer;
-	 * World var16 = this.mc.theWorld;
-	 * RenderGlobal var17 = this.mc.renderGlobal;
-	 * GL11.glViewport(0, 0, this.mc.displayWidth, this.mc.displayHeight);
-	 * this.updateFogColor(0.0F);
-	 * GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT | GL11.GL_COLOR_BUFFER_BIT);
-	 * GL11.glEnable(GL11.GL_CULL_FACE);
-	 * this.farPlaneDistance = (float)(512 >> (this.mc.options.renderDistance <<
-	 * 1));
-	 * GL11.glMatrixMode(GL11.GL_PROJECTION);
-	 * GL11.glLoadIdentity();
-	 * GL11.glOrtho(0.0D, (double)this.mc.displayWidth, 0.0D,
-	 * (double)this.mc.displayHeight, 10.0D, 10000.0D);
-	 * GL11.glMatrixMode(GL11.GL_MODELVIEW);
-	 * GL11.glLoadIdentity();
-	 * GL11.glTranslatef((float)(-var13), (float)(-var14), -5000.0F);
-	 * GL11.glScalef(16.0F, -16.0F, -16.0F);
-	 * float var22 = 1.0F;
-	 * var22 = 0.0F;
-	 * var22 = 0.0F;
-	 * var22 = 0.0F;
-	 * var22 = 0.0F;
-	 * var22 = 0.0F;
-	 * var22 = 0.5F;
-	 * var22 = 1.0F;
-	 * var22 = 0.0F;
-	 * var22 = -1.0F;
-	 * var22 = 1.0F;
-	 * var22 = 0.0F;
-	 * var22 = 0.0F;
-	 * var22 = 0.0F;
-	 * var22 = -0.5F;
-	 * var22 = 1.0F;
-	 * this.entityFloatBuffer.clear();
-	 * this.entityFloatBuffer.put(1.0F).put(-0.5F).put(0.0F).put(0.0F);
-	 * this.entityFloatBuffer.put(0.0F).put(1.0F).put(-1.0F).put(0.0F);
-	 * this.entityFloatBuffer.put(1.0F).put(0.5F).put(0.0F).put(0.0F);
-	 * this.entityFloatBuffer.put(0.0F).put(0.0F).put(0.0F).put(1.0F);
-	 * this.entityFloatBuffer.flip();
-	 * GL11.glMultMatrix(this.entityFloatBuffer);
-	 * GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
-	 * GL11.glTranslatef((float)(-var16.width) / 2.0F, (float)(-var16.height) /
-	 * 2.0F, (float)(-var16.length) / 2.0F);
-	 * IsomCamera var24 = new IsomCamera();
-	 * this.mc.renderGlobal.clipRenderersByFrustrum(var24);
-	 * this.mc.renderGlobal.updateRenderers(var15);
-	 * this.setupFog();
-	 * GL11.glEnable(GL11.GL_FOG);
-	 * GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_LINEAR);
-	 * float var23 = (float)var16.height * 8.0F;
-	 * GL11.glFogf(GL11.GL_FOG_START, 5000.0F - var23);
-	 * GL11.glFogf(GL11.GL_FOG_END, 5000.0F + var23 * 8.0F);
-	 * RenderHelper.enableStandardItemLighting();
-	 * var17.renderEntities(this.orientCamera(0.0F), var24, 0.0F);
-	 * RenderHelper.disableStandardItemLighting();
-	 * GL11.glBindTexture(GL11.GL_TEXTURE_2D,
-	 * this.mc.renderEngine.getTexture("/terrain.png"));
-	 * var17.sortAndRender(var15, 0);
-	 * var17.oobGroundRenderer();
-	 * if(var16.cloudHeight < var16.height) {
-	 * var17.renderSky(0.0F);
-	 * }
-	 * 
-	 * GL11.glEnable(GL11.GL_BLEND);
-	 * GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-	 * GL11.glColorMask(false, false, false, false);
-	 * var13 = var17.sortAndRender(var15, 1);
-	 * GL11.glColorMask(true, true, true, true);
-	 * if(var13 > 0) {
-	 * var17.renderAllRenderLists();
-	 * }
-	 * 
-	 * if(var16.getGroundLevel() >= 0) {
-	 * var17.oobWaterRenderer();
-	 * }
-	 * 
-	 * GL11.glDepthMask(true);
-	 * GL11.glDisable(GL11.GL_BLEND);
-	 * GL11.glDisable(GL11.GL_FOG);
-	 * this.entityByteBuffer.clear();
-	 * GL11.glPixelStorei(GL11.GL_PACK_ALIGNMENT, 1);
-	 * GL11.glReadPixels(0, 0, this.mc.displayWidth, this.mc.displayHeight,
-	 * GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, (ByteBuffer)this.entityByteBuffer);
-	 * BufferedImage var21 = screenshotBuffer(this.entityByteBuffer, var6, var7);
-	 * var5.drawImage(var21, var10, var11, (ImageObserver)null);
-	 * }
-	 * }
-	 * 
-	 * var5.dispose();
-	 * this.mc.loadingScreen.displayLoadingString("Saving as " + var3.toString());
-	 * this.mc.loadingScreen.setLoadingProgress(100);
-	 * FileOutputStream var20 = new FileOutputStream(var3);
-	 * ImageIO.write(var4, "png", var20);
-	 * var20.close();
-	 * return;
-	 * } catch (Throwable var18) {
-	 * var18.printStackTrace();
-	 * return;
-	 * }
-	 * }
-	 * 
-	 * ++var2;
-	 * }
-	 * }
-	 * 
-	 * private static BufferedImage screenshotBuffer(ByteBuffer var0, int var1, int
-	 * var2) {
-	 * var0.position(0).limit(var1 * var2 << 2);
-	 * BufferedImage var3 = new BufferedImage(var1, var2, 1);
-	 * int[] var4 = ((DataBufferInt)var3.getRaster().getDataBuffer()).getData();
-	 * 
-	 * for(int var5 = 0; var5 < var1 * var2; ++var5) {
-	 * int var6 = var0.get(var5 * 3) & 255;
-	 * int var7 = var0.get(var5 * 3 + 1) & 255;
-	 * int var8 = var0.get(var5 * 3 + 2) & 255;
-	 * var4[var5] = var6 << 16 | var7 << 8 | var8;
-	 * }
-	 * 
-	 * return var3;
-	 * }
-	 */
+    public void grabLargeScreenshot() {
+        this.mc.loadingScreen.displayProgressMessage("Grabbing large screenshot");
+        World world = this.mc.theWorld;
+
+        // Notch's exact bounding box for his isometric matrix
+        int imgWidth = (world.width << 4) + (world.length << 4);
+        int imgHeight = (world.height << 4) + imgWidth / 2;
+
+        int tileW = this.mc.displayWidth;
+        int tileH = this.mc.displayHeight;
+        int tilesX = (imgWidth + tileW - 1) / tileW;
+        int tilesY = (imgHeight + tileH - 1) / tileH;
+        int totalTiles = tilesX * tilesY;
+
+        // Tell PlatformApplication to create the giant hidden canvas
+        PlatformApplication.startBigScreenshot(imgWidth, imgHeight);
+
+        RenderGlobal renderGlobal = this.mc.renderGlobal;
+        EntityPlayerSP player = this.mc.thePlayer;
+        int currentTile = 0;
+
+        // Allocate buffer using Eaglercraft's memory manager (RGBA = 4 bytes per pixel)
+        ByteBuffer tileBuffer = PlatformRuntime.allocateByteBuffer(tileW * tileH * 4);
+
+        // Render the world chunk by chunk
+        for (int ty = 0; ty < tilesY; ty++) {
+            for (int tx = 0; tx < tilesX; tx++) {
+                currentTile++;
+                this.mc.loadingScreen.displayLoadingString("Rendering");
+                this.mc.loadingScreen.setLoadingProgress(currentTile * 100 / totalTiles);
+
+                int offsetX = tx * tileW;
+                int offsetY = ty * tileH;
+                int centerOffsetX = offsetX - imgWidth / 2;
+                int centerOffsetY = offsetY - imgHeight / 2;
+
+                GL11.glViewport(0, 0, tileW, tileH);
+                this.updateFogColor(0.0F);
+                GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT | GL11.GL_COLOR_BUFFER_BIT);
+
+                GL11.glEnable(GL11.GL_CULL_FACE);
+                this.farPlaneDistance = (float)(512 >> (this.mc.options.renderDistance << 1));
+
+                GL11.glMatrixMode(GL11.GL_PROJECTION);
+                GL11.glLoadIdentity();
+                GL11.glOrtho(0.0D, (double)tileW, 0.0D, (double)tileH, 10.0D, 10000.0D);
+                GL11.glMatrixMode(GL11.GL_MODELVIEW);
+                GL11.glLoadIdentity();
+                GL11.glTranslatef((float)(-centerOffsetX), (float)(-centerOffsetY), -5000.0F);
+                GL11.glScalef(16.0F, -16.0F, -16.0F);
+
+                // Apply Notch's exact isometric shear matrix
+                this.entityFloatBuffer.clear();
+                this.entityFloatBuffer.put(1.0F).put(-0.5F).put(0.0F).put(0.0F);
+                this.entityFloatBuffer.put(0.0F).put(1.0F).put(-1.0F).put(0.0F);
+                this.entityFloatBuffer.put(1.0F).put(0.5F).put(0.0F).put(0.0F);
+                this.entityFloatBuffer.put(0.0F).put(0.0F).put(0.0F).put(1.0F);
+                this.entityFloatBuffer.flip();
+                GL11.glMultMatrix(this.entityFloatBuffer);
+
+                GL11.glTranslatef(-(float)world.width / 2.0F, -(float)world.height / 2.0F, -(float)world.length / 2.0F);
+
+                IsomCamera camera = new IsomCamera();
+                renderGlobal.clipRenderersByFrustrum(camera);
+                renderGlobal.updateRenderers(player);
+
+                // Disable fog completely for isometric rendering so it doesn't darken the blocks
+                GL11.glDisable(GL11.GL_FOG);
+
+                // 1. Render Sky and Clouds FIRST
+                if (world.cloudHeight < world.height) {
+                    GL11.glDisable(GL11.GL_CULL_FACE);
+                    GL11.glEnable(GL11.GL_BLEND);
+                    renderGlobal.renderSky(0.0F);
+                    GL11.glEnable(GL11.GL_CULL_FACE);
+                    GL11.glDisable(GL11.GL_BLEND);
+                    GL11.glDisable(GL11.GL_FOG); // Fix: Disable the fog that renderSky leaves on!
+                }
+
+                // Clear the depth buffer so the sky acts purely as a background and doesn't block terrain!
+                GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
+
+                // 2. Render Entities
+                RenderHelper.enableStandardItemLighting();
+                renderGlobal.renderEntities(this.orientCamera(0.0F), camera, 0.0F);
+                RenderHelper.disableStandardItemLighting();
+
+                // 3. Render Terrain
+                GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+                GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/terrain.png"));
+                renderGlobal.sortAndRender(player, 0);
+
+                // 4. Render the infinite dirt/stone ocean floor
+                if (world.getGroundLevel() >= 0) {
+                    renderGlobal.oobGroundRenderer();
+                }
+
+                // 5. Render water correctly as transparent blocks
+                GL11.glDepthMask(true);
+                GL11.glEnable(GL11.GL_BLEND);
+                GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                GL11.glDisable(GL11.GL_CULL_FACE);
+                GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+                GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/terrain.png"));
+                renderGlobal.sortAndRender(player, 1);
+
+                // 6. Render the infinite water plane surrounding the map
+                if (world.getGroundLevel() >= 0) {
+                    GL11.glEnable(GL11.GL_CULL_FACE);
+                    renderGlobal.oobWaterRenderer();
+                }
+
+                GL11.glEnable(GL11.GL_CULL_FACE);
+                GL11.glDisable(GL11.GL_BLEND);
+
+                // Read pixels using Eaglercraft's internal WebGL wrapper
+                PlatformOpenGL._wglBindFramebuffer(0x8D40, null); // Ensure we read from the screen
+                tileBuffer.clear();
+                PlatformOpenGL._wglReadPixels(0, 0, tileW, tileH, 6408, 5121, tileBuffer); // 6408 = GL_RGBA, 5121 = GL_UNSIGNED_BYTE
+                tileBuffer.rewind();
+
+                // Set alpha to 255 so the PNG doesn't turn out transparent
+                for(int i = 3, l = tileBuffer.remaining(); i < l; i += 4) {
+                    tileBuffer.put(i, (byte)0xFF);
+                }
+                tileBuffer.rewind();
+
+                // Canvas Y placement
+                int canvasY = offsetY;
+
+                // Tell PlatformApplication to copy the pixels onto the giant hidden canvas
+                PlatformApplication.putTileToBigScreenshot(offsetX, canvasY, tileW, tileH, tileBuffer);
+
+                // Draw the loading screen over the 3D render to prevent flickering!
+                this.mc.loadingScreen.displayLoadingString("Rendering");
+                this.mc.loadingScreen.setLoadingProgress(currentTile * 100 / totalTiles);
+            }
+        }
+
+        // Free the memory used by the byte buffer
+        PlatformRuntime.freeByteBuffer(tileBuffer);
+
+        // Tell PlatformApplication to encode the giant canvas into a PNG and download it!
+        PlatformApplication.saveBigScreenshot("isometric_" + System.currentTimeMillis() + ".png");
+
+        this.mc.loadingScreen.displayLoadingString("Done");
+        this.mc.loadingScreen.setLoadingProgress(100);
+    }
 
 	private void getMouseOver(float var1) {
 		EntityRenderer var7 = this;

@@ -48,6 +48,39 @@ import net.lax1dude.eaglercraft.internal.teavm.TeaVMUtils;
  */
 public class PlatformApplication {
 
+    private static HTMLCanvasElement bigShotCanvas = null;
+    private static CanvasRenderingContext2D bigShotCtx = null;
+
+    public static void startBigScreenshot(int w, int h) {
+        bigShotCanvas = (HTMLCanvasElement) Window.current().getDocument().createElement("canvas");
+        bigShotCanvas.setWidth(w);
+        bigShotCanvas.setHeight(h);
+        bigShotCtx = (CanvasRenderingContext2D) bigShotCanvas.getContext("2d", PlatformAssets.youEagler());
+    }
+
+    public static void putTileToBigScreenshot(int x, int y, int w, int h, ByteBuffer buf) {
+        if (bigShotCtx != null) {
+            putImageData(bigShotCtx, EaglerArrayBufferAllocator.getDataView8(buf).getBuffer(), x, y, w, h);
+        }
+    }
+
+    @JSBody(params = { "ctx", "buffer", "x", "y", "w", "h" }, script =
+            "var imgData = ctx.createImageData(w, h); " +
+            "var ww = w * 4; " +
+            "for(var i = 0; i < h; ++i) { " +
+            "   imgData.data.set(new Uint8ClampedArray(buffer, i * ww, ww), i * ww); " +
+            "} " +
+            "ctx.putImageData(imgData, x, y);")
+    private static native void putImageData(CanvasRenderingContext2D ctx, ArrayBuffer buffer, int x, int y, int w, int h);
+
+    public static void saveBigScreenshot(String name) {
+        if (bigShotCanvas != null) {
+            downloadScreenshot(bigShotCanvas, name, PlatformRuntime.parent);
+            bigShotCanvas = null;
+            bigShotCtx = null;
+        }
+    }
+
 	public static void openLink(String url) {
 		if(url.indexOf(':') == -1) {
 			url = "http://" + url;

@@ -14,6 +14,7 @@
  * 
  */
 
+
 const platfApplicationName = "platformApplication";
 
 /**

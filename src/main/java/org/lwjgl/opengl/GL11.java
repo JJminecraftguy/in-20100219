@@ -219,6 +219,12 @@ public class GL11 extends RealOpenGLEnums {
 		translate(f, g, h);
 	}
 
+    public static void glMultMatrix(FloatBuffer m) {
+        float[] mat = new float[16];
+        m.get(mat);
+        GlStateManager.multMatrix(mat);
+    }
+
 	public static void glRotatef(float f, float g, float h, float i) {
 		rotate(f, g, h, i);
 	}
